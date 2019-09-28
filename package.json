@@ -1,0 +1,37 @@
+{
+  "name": "banka",
+  "version": "1.0.0",
+  "description": "A Banking App Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "start-server": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikeshegs/Banka.git"
+  },
+  "author": "Ikechukwu Okoro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikeshegs/Banka/issues"
+  },
+  "homepage": "https://github.com/ikeshegs/Banka#readme",
+  "dependencies": {
+    "bcrypt": "3.0.6",
+    "body-parser": "1.19.0",
+    "chai": "4.2.0",
+    "chai-http": "4.3.0",
+    "dotenv": "8.1.0",
+    "express": "4.17.1",
+    "joi": "14.3.1",
+    "jsonwebtoken": "8.5.1",
+    "mocha": "6.2.0",
+    "pg": "7.12.1",
+    "sequelize": "5.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.19.2"
+  }
+}
