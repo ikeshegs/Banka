@@ -1,0 +1,15 @@
+<header>
+  <nav class="navbar">
+    <div class="homelink">
+      <ul>
+        <li><a class="<%= path === '/' %>" href="/">Banka</a></li>
+      </ul>
+    </div>
+    <div class="signin-login">
+        <button class="<%= path === '/signin' %>" href="/signin">Sign Up</button>
+        <button class="<%= path === '/login' %>" href="/login">Log In</button>
+    </div>
+  </nav>
+</header>
+
+<!--<a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Products</a>-->

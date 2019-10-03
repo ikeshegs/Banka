@@ -1,5 +1,8 @@
-#Folders
+# Node Modules Folder
 /node_modules
 
-#Files
+# vscode settings
+.vscode
+
+#environment viarables
 .env
