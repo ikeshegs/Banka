@@ -12,17 +12,17 @@ exports.firstnameCheck = check('firstname')
   .isLength({ min: 1 })
   .withMessage('Firstname field cannot be empty')
   .isString()
-  .withMessage(`Firstname must be Alphabets`)
+  .withMessage('Firstname must be Alphabets')
   .isAlpha()
   .withMessage('Firstname field cannot be blank')
 
 exports.lastnameCheck = check('lastname')
   .exists()
-  .withMessage(`Lastname field is missing`)
+  .withMessage('Lastname field is missing')
   .isLength({ min: 1 })
-  .withMessage(`Lastname field cannot be empty`)
+  .withMessage('Lastname field cannot be empty')
   .isString()
-  .withMessage(`Lastname must be Alphabets`)
+  .withMessage('Lastname must be Alphabets')
   .isAlpha()
   .withMessage('Lastname field cannot be blank')
 
@@ -42,4 +42,4 @@ exports.confirmPasswordCheck = check('confirmPassword').custom((value, { req }) 
     throw new Error('Password does not match');
   }
   return true;
-})
+});
