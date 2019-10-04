@@ -1,0 +1,29 @@
+#container {
+  display: flex;
+  flex-direction: row;
+  height: 85vh;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.left {
+  flex-basis: 500px;
+  margin: 50px;
+}
+
+.left h1 {
+  font-size: 3em;
+  letter-spacing: 2px;
+  color: var(--dark-green);
+  font-family: 'Righteous', cursive;
+}
+
+.left p {
+  font-size: 2em;
+  font-family: 'Roboto', sans-serif;
+  word-spacing: 3px;
+  letter-spacing: 2px;
+}

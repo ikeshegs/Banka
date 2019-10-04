@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 // Routes
-const userRoutes = require('./routes/userRoute');
+const userRoute = require('./routes/user');
+const authRoute = require('./routes/auth');
 const errorPageController = require('./controllers/errorPageController');
 
 dotenv.config();
@@ -19,7 +20,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/v1', userRoutes);
+app.use('/api/v1', userRoute);
+app.use(authRoute);
 
 app.get('/', (req, res) => {
   res.render('index', {
