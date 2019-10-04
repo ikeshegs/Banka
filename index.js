@@ -26,7 +26,8 @@ app.use(authRoute);
 app.get('/', (req, res) => {
   res.render('index', {
     pageTitle: 'Banka',
-    path: '/'
+    path: '/',
+    onPage: false
   });
 });
 

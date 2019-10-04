@@ -11,6 +11,7 @@ exports.getSigninLogin = (req, res, next) => {
       password: '',
       confirmPassword: ''
     },
+    onPage: true,
     validationErrors: []
   });
 };

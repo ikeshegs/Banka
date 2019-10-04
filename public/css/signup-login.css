@@ -51,6 +51,11 @@ button:focus {
 	outline: none;
 }
 
+button:hover {
+	background-color: var(--white-color);
+	color: var(--dark-green);
+}
+
 button.ghost {
 	background-color: transparent;
 	border-color: var(--white-color);
@@ -75,11 +80,16 @@ input {
 	width: 100%;
 }
 
+input:focus {
+	outline-color: var(--dark-green);
+}
+
 .wrapper {
   display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	flex-grow: 1;
 }
 
 .container {
@@ -163,7 +173,7 @@ input {
 }
 
 .container.right-panel-active .overlay {
-  	transform: translateX(50%);
+  transform: translateX(50%);
 }
 
 .overlay-panel {
@@ -196,4 +206,8 @@ input {
 
 .container.right-panel-active .overlay-right {
 	transform: translateX(20%);
+}
+
+footer {
+	margin-top: 40px;
 }
