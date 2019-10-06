@@ -10,19 +10,67 @@
       <div class="form-container sign-up-container">
         <form action="/api/v1/auth/signup" method="POST">
           <h1>Create Account</h1>
-          <input type="text" placeholder="Firstname" />
-          <input type="text" placeholder="Lastname" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <input type="password" placeholder="Confirm Password" />
+          <input
+              class="<%= validationErrors.find(e => e.param === 'firstname') ? 'invalid' : '' %>"
+              type="text" 
+              name="firstname" 
+              id="firstname" 
+              placeholder="Firstname" />
+          <input
+              class="<%= validationErrors.find(e => e.param === 'lastname') ? 'invalid' : '' %>" 
+              type="text" 
+              name="lastname" 
+              id="lastname" 
+              placeholder="Lastname" />
+          <input
+              class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" 
+              type="email" 
+              name="email" 
+              id="email" 
+              placeholder="Email Address" />
+          <input
+              class="<%= validationErrors.find(e => e.param === 'phone') ? 'invalid' : '' %>" 
+              type="tel" 
+              name="phone" 
+              id="phone" 
+              placeholder="Phone Number" />
+          <label for="accountType">Select type of account:</label>
+          <select class="<%= validationErrors.find(e => e.param === 'accountType') ? 'invalid' : '' %>" name="accountType" id="accountType">
+            <option>-</option>
+            <option value="client" name="client" id="client">Client</option>
+            <option value="staff" name="staff" id="staff">Staff</option>
+          </select>
+          <input
+              class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>" 
+              type="password" 
+              name="password" 
+              id="password" 
+              placeholder="Password" />
+          <input
+              class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>" 
+              type="password" 
+              name="confirmPassword" 
+              id="confirmPassword" 
+              placeholder="Confirm Password" />
           <button>Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in-container">
+        
         <form action="/api/v1/auth/login" method="POST">
           <h1>Log In</h1>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input 
+              class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" 
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email Address" />
+          <input
+              class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password" />
           <a href="#">Forgot your password?</a>
           <button>Log In</button>
         </form>

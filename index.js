@@ -7,6 +7,10 @@ const dotenv = require('dotenv');
 const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
 const errorPageController = require('./controllers/errorPageController');
+const sequelize = require('./utils/database');
+const User = require('./models/account');
+const Account = require('./models/account');
+const Transaction = require('./models/transaction');
 
 dotenv.config();
 const app = express();
@@ -33,8 +37,33 @@ app.get('/', (req, res) => {
 
 app.use(errorPageController.get404);
 
-const PORT = process.env.PORT || 3500;
-app.listen(PORT);
-console.log('App is running on port', PORT);
+Account.belongsTo(User, {
+  constraints: true,
+  onDelete: 'CASCADE',
+  foreignKey: 'id'
+});
+User.hasMany(Account, {
+  foreignKey: 'id'
+});
+Transaction.belongsTo(Account, {
+  constraints: true,
+  onDelete: 'CASCADE',
+  foreignKey: 'accountNumber'
+});
+Account.hasMany(Transaction, {
+  foreignKey: 'accountNumber'
+});
+
+sequelize
+  .authenticate()
+  .then(result => {
+    console.log('Success!')
+    const PORT = process.env.PORT || 3500;
+    app.listen(PORT);
+    console.log('App is connected to the database and is running on port', PORT);
+  })
+  .catch(err => {
+    console.log(err);
+  })
 
 module.exports = app;

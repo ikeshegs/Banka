@@ -21,12 +21,33 @@ span {
 	font-size: 12px;
 }
 
+.user-message {
+  margin: auto;
+  width: 90%;
+  border: 1px solid #4771fa;
+  padding: 0.5rem;
+  border-radius: 3px;
+  background: #b9c9ff;
+  text-align: center;
+}
+
+.user-message--error {
+  border-color: red;
+  background: rgb(255, 176, 176);
+  color: red;
+}
+
 .form-container form a {
 	color: var(--dark-green);
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
+}
+
+label {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 14px;
 }
 
 button {
@@ -51,10 +72,10 @@ button:focus {
 	outline: none;
 }
 
-button:hover {
+/* button:hover {
 	background-color: var(--white-color);
 	color: var(--dark-green);
-}
+} */
 
 button.ghost {
 	background-color: transparent;
@@ -80,8 +101,22 @@ input {
 	width: 100%;
 }
 
-input:focus {
+select {
+	background-color: #eee;
+	border: none;
+	padding: 18px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+input:focus,
+select:focus {
 	outline-color: var(--dark-green);
+}
+
+input.invalid,
+select.invalid {
+  border-color: red;
 }
 
 .wrapper {
