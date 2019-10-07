@@ -18,7 +18,7 @@ if (process.env.NODE_ENV = 'development') {
   });
 } else {
   sequelize = new Sequelize(process.env.DB_PROD_NAME, process.env.DB_PROD_USERNAME, process.env.DB_PROD_PASSWORD, {
-    host: 'localhost',
+    host: process.env.DB_PROD_HOST,
     dialect: 'postgres'
   });
 }
