@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
 
 app.use(errorPageController.get404);
 
+// DATABASE ASSOCIATIONS
 Account.belongsTo(User, {
   constraints: true,
   onDelete: 'CASCADE',
@@ -55,7 +56,7 @@ Account.hasMany(Transaction, {
 });
 
 sequelize
-  .authenticate()
+  .sync({force: true})
   .then(result => {
     console.log('Success!')
     const PORT = process.env.PORT || 3500;

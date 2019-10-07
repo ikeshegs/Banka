@@ -21,11 +21,6 @@ const Transaction = sequelize.define('transaction', {
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
   },
-  createdOn: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW,
-    allowNull: false
-  },
   type: {
     type: Sequelize.STRING,
     allowNull: false
@@ -45,12 +40,7 @@ const Transaction = sequelize.define('transaction', {
   },
   oldBalance: {
     type: Sequelize.FLOAT,
-    allowNull: false,
-    references: {
-      model: Account,
-      key: Account.balance,
-      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-    }
+    allowNull: false
   },
   newBalance: {
     type: Sequelize.FLOAT,
