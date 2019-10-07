@@ -58,7 +58,7 @@ Account.hasMany(Transaction, {
 sequelize
   .sync()
   .then(result => {
-    console.log(result)
+    console.log('Success!')
     const PORT = process.env.PORT || 3500;
     app.listen(PORT);
     console.log('App is connected to the database and is running on port', PORT);
