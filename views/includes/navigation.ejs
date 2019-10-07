@@ -5,7 +5,7 @@
     </ul>
 
     <ul class="signin-login">
-      <% if (onPage === false) { %>
+      <% if (!onPage) { %>
         <a class="login <%= path === '/signup-login' %>" href="/signup-login">Sign Up / Log In</a>
       <% } %>
 
