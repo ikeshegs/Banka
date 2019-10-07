@@ -12,10 +12,7 @@ let sequelize;
 // }
 
 if (process.env.NODE_ENV = 'production') {
-  sequelize = new Sequelize(process.env.DB_PROD_NAME, process.env.DB_PROD_USERNAME, process.env.DB_PROD_PASSWORD, {
-    host: process.env.DB_PROD_HOST,
-    dialect: 'postgres'
-  });
+  sequelize = new Sequelize(process.env.DB_PROD2_URI) || new Sequelize(process.env.DATABASE_URL);
 }
 if (process.env.NODE_ENV = 'development') {
   sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
