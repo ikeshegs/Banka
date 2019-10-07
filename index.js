@@ -56,7 +56,7 @@ Account.hasMany(Transaction, {
 });
 
 sequelize
-  .sync({force: true})
+  .sync()
   .then(result => {
     console.log('Success!')
     const PORT = process.env.PORT || 3500;
