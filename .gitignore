@@ -1,5 +1,5 @@
 # Node Modules Folder
-/node_modules
+node_modules/
 
 # vscode settings
 .vscode

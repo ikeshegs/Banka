@@ -1,7 +1,10 @@
 const express = require('express');
 
 // Controllers
-const userController = require('../controllers/userController');
+const {
+  getSignUpLoginPage,
+  createUser
+} = require('../controllers/userController');
 
 const {
   emailCheck,
@@ -15,7 +18,9 @@ const {
 
 const user = express.Router();
 
-user.post('/auth/signup', [emailCheck, firstnameCheck, lastnameCheck, phoneNumberCheck, accountTypeCheck, passwordCheck, confirmPasswordCheck], userController.createUser);
-user.post('/auth/login', [emailCheck, passwordCheck])
+user.get('/signup-login', getSignUpLoginPage);
+
+user.post('/api/v1/auth/signup', [emailCheck, firstnameCheck, lastnameCheck, phoneNumberCheck, accountTypeCheck, passwordCheck, confirmPasswordCheck], createUser);
+user.post('/api/v1/auth/login', [emailCheck, passwordCheck])
 
 module.exports = user;

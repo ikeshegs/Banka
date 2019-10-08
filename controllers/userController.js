@@ -1,23 +1,44 @@
-const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 
-class userController {
+const {
+  validationResult
+} = require('express-validator');
 
-  static async createUser(req, res) {
-    const errors = validationResult(req);
 
+const getSignUpLoginPage = (req, res) => {
+  res.render('auth/signup-login', {
+    path: '/signup-login',
+    pageTitle: 'Sign Up/Log In',
+    oldInput: {
+      firstname: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: ''
+    },
+    onPage: true,
+    validationErrors: []
+  });
+};
+
+const createUser = async (req, res) => {
+  try {
+    const errors = await validationResult(req);
+    
     if (!errors.isEmpty()) {
       const error = errors.array();
-      return res.status(400).json({ 
-        status: 400, 
-        error: error[0].msg 
+      return res.status(400).json({
+        status: 400,
+        error: error[0].msg
       });
     }
+  } catch (error) {
+
   }
-  // constructor() {
-  //   this
-  // }
-
-
 }
 
-module.exports = userController;
+module.exports = {
+  getSignUpLoginPage,
+  createUser
+};

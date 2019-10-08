@@ -2,15 +2,14 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const Sequelize = require('sequelize');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const SessionStore = require('express-session-sequelize')(session.Store);
 
 // Routes
 const userRoute = require('./routes/user');
-const authRoute = require('./routes/auth');
 const errorPageController = require('./controllers/errorPageController');
-const sequelize = require('./utils/database');
-const User = require('./models/account');
-const Account = require('./models/account');
-const Transaction = require('./models/transaction');
 
 dotenv.config();
 const app = express();
@@ -24,8 +23,23 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/v1', userRoute);
-app.use(authRoute);
+const sessionDB = new Sequelize(process.env.DB_URI, {
+  dialect: 'postgres'
+});
+
+const sequelizeSessionStore = new SessionStore({
+  db: sessionDB
+});
+
+app.use(cookieParser());
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  store: sequelizeSessionStore,
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(userRoute);
 
 app.get('/', (req, res) => {
   res.render('index', {
@@ -37,34 +51,8 @@ app.get('/', (req, res) => {
 
 app.use(errorPageController.get404);
 
-// DATABASE ASSOCIATIONS
-Account.belongsTo(User, {
-  constraints: true,
-  onDelete: 'CASCADE',
-  foreignKey: 'id'
-});
-User.hasMany(Account, {
-  foreignKey: 'id'
-});
-Transaction.belongsTo(Account, {
-  constraints: true,
-  onDelete: 'CASCADE',
-  foreignKey: 'accountNumber'
-});
-Account.hasMany(Transaction, {
-  foreignKey: 'accountNumber'
-});
-
-sequelize
-  .sync()
-  .then(result => {
-    console.log('Success!')
-    const PORT = process.env.PORT || 3500;
-    app.listen(PORT);
-    console.log('App is connected to the database and is running on port', PORT);
-  })
-  .catch(err => {
-    console.log(err);
-  })
+const PORT = process.env.PORT || 3500;
+app.listen(PORT);
+console.log('App is running on port', PORT);
 
 module.exports = app;
